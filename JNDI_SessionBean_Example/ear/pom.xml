@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.demo</groupId>
+    <artifactId>ear</artifactId>
+    <version>2025.04</version>
+    <packaging>ear</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <name>demo-ear</name>
+    <dependencies>
+        <!-- Include the EJB Module -->
+        <dependency>
+            <groupId>com.demo</groupId>
+            <artifactId>ejb_impl</artifactId>
+            <version>2025.04</version>
+            <type>ejb</type>  <!-- Very important -->
+        </dependency>
+        <dependency>
+            <groupId>com.demo</groupId>
+            <artifactId>ejb_api</artifactId>
+            <version>2025.04</version>
+            <type>ejb</type>  <!-- Very important -->
+        </dependency>
+        <dependency>
+            <groupId>com.demo</groupId>
+            <artifactId>web</artifactId>
+            <version>2025.04</version>
+            <type>war</type>  <!-- Very important -->
+            
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>demo</finalName> 
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>META-INF/**</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>3.2.0</version>
+
+                <configuration>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir> <!-- Put dependencies into EAR/lib -->
+                    <includeFileSet>  <!-- 👈 Tell Maven to include extra files -->
+                        <directory>application</directory>  <!-- 👈 Source of your .properties -->
+
+                        <includes>
+                            <include>**/*.properties</include>
+                            <include>**/*.xml</include>
+                        </includes>
+                    </includeFileSet>
+                    <modules>
+                        <webModule>
+                            <groupId>com.demo</groupId>
+                            <artifactId>web</artifactId>
+                            <bundleFileName>demo.war</bundleFileName>
+                            <contextRoot>/demo</contextRoot>
+                        </webModule>
+                        <ejbModule>
+                            <groupId>com.demo</groupId>
+                             <artifactId>ejb_api</artifactId>
+                            <bundleFileName>ejb_api.jar</bundleFileName> <!-- Force nice name inside EAR -->
+                        </ejbModule>
+                        <ejbModule>
+                            <groupId>com.demo</groupId>
+                             <artifactId>ejb_impl</artifactId>
+                            <bundleFileName>ejb_impl.jar</bundleFileName> <!-- Force nice name inside EAR -->
+                        </ejbModule>
+                        
+                    </modules>
+                </configuration>
+                
+            </plugin>
+        </plugins>
+    </build>
+    
+</project>
