@@ -15,7 +15,7 @@
     </properties>
     
     <dependencies>
-         <dependency>
+        <dependency>
             <groupId>com.demo</groupId>
             <artifactId>ejb_api</artifactId>
             <version>2025.04</version>
@@ -25,5 +25,11 @@
             <artifactId>wildfly-client-all</artifactId>
             <version>35.0.0.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.glassfish.main.appclient</groupId>
+            <artifactId>gf-client</artifactId>
+            <version>5.1.0</version> <!-- or whatever matches your GlassFish version -->
+        </dependency>
+
     </dependencies>
 </project>

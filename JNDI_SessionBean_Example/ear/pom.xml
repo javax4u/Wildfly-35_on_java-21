@@ -17,12 +17,7 @@
             <version>2025.04</version>
             <type>ejb</type>  <!-- Very important -->
         </dependency>
-        <dependency>
-            <groupId>com.demo</groupId>
-            <artifactId>ejb_api</artifactId>
-            <version>2025.04</version>
-            <type>ejb</type>  <!-- Very important -->
-        </dependency>
+       
         <dependency>
             <groupId>com.demo</groupId>
             <artifactId>web</artifactId>
@@ -66,11 +61,11 @@
                             <bundleFileName>demo.war</bundleFileName>
                             <contextRoot>/demo</contextRoot>
                         </webModule>
-                        <ejbModule>
+                        <jarModule>
                             <groupId>com.demo</groupId>
                              <artifactId>ejb_api</artifactId>
                             <bundleFileName>ejb_api.jar</bundleFileName> <!-- Force nice name inside EAR -->
-                        </ejbModule>
+                        </jarModule>
                         <ejbModule>
                             <groupId>com.demo</groupId>
                              <artifactId>ejb_impl</artifactId>
